@@ -12,6 +12,8 @@ Group:          Development/Other
 License:        MIT
 URL:            http://code.google.com/p/%{oname}/
 Source0:        http://%{oname}.googlecode.com/files/%{oname}.%{version}.tar.gz
+# patch to compile with postgresql, 
+# to send upstream, once a Pgsql ( nanar ) tell me if this is right or not
 Patch0:         luadbi-fix_postgresql.diff
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
