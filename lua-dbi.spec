@@ -32,6 +32,7 @@ statements and it allows for retrieving results in a row-by-row cursor fashion.
 Summary:        SQLite database connectivity for the Lua programming language
 Group:          Development/Other
 Requires:       lua >= %{luaver}
+Requires:       %{name}
 %description sqlite
 LuaDBI is a simple interface from Lua to a DBMS. This package provides access
 to SQLite databases.
@@ -41,6 +42,7 @@ to SQLite databases.
 Summary:        MySQL database connectivity for the Lua programming language
 Group:          Development/Other
 Requires:       lua >= %{luaver}
+Requires:       %{name}
 %description mysql
 LuaDBI is a simple interface from Lua to a DBMS. This package provides access
 to MySQL databases.
@@ -50,6 +52,7 @@ to MySQL databases.
 Summary:        PostgreSQL database connectivity for the Lua programming language
 Group:          Development/Other
 Requires:       lua >= %{luaver}
+Requires:       %{name}
 %description postgresql
 LuaDBI is a simple interface from Lua to a DBMS. This package provides access
 to PostgreSQL databases.
