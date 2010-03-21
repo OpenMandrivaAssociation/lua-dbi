@@ -23,8 +23,6 @@ BuildRequires:  sqlite3-devel >= 3.0
 BuildRequires:  mysql-devel
 BuildRequires:  postgresql-devel
 
-Requires:       lua-sql-sqlite, lua-sql-mysql, lua-sql-postgresql, lua-sql-doc
-
 %description
 LuaSQL is a simple interface from Lua to a DBMS. This package of LuaSQL
 supports MySQL, SQLite and PostgreSQL databases. You can execute arbitrary SQL
