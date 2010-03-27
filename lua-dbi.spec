@@ -3,9 +3,12 @@
 %define luapkgdir %{_datadir}/lua/%{luaver}
 %define oname luadbi
 
+# DBI.lua has a shebang that requires bin/lua directly
+%define _requires_exceptions bin/lua
+
 Name:           lua-dbi
 Version:        0.4
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Database connectivity for the Lua programming language
 
 Group:          Development/Other
