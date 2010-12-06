@@ -8,7 +8,7 @@
 
 Name:           lua-dbi
 Version:        0.4
-Release:        %mkrel 2
+Release:        %mkrel 3
 Summary:        Database connectivity for the Lua programming language
 
 Group:          Development/Other
