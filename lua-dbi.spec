@@ -94,3 +94,25 @@ rm -rf $RPM_BUILD_ROOT
 %files postgresql
 %defattr(-,root,root,-)
 %{lualibdir}/dbdpostgresql.so
+
+
+%changelog
+* Thu Mar 17 2011 Oden Eriksson <oeriksson@mandriva.com> 0.4-4mdv2011.0
++ Revision: 645823
+- relink against libmysqlclient.so.18
+
+* Mon Dec 06 2010 Oden Eriksson <oeriksson@mandriva.com> 0.4-3mdv2011.0
++ Revision: 612777
+- the mass rebuild of 2010.1 packages
+
+* Sat Mar 27 2010 Michael Scherer <misc@mandriva.org> 0.4-2mdv2010.1
++ Revision: 528274
+- fix spurious requires ( autodetected )
+
+* Sun Mar 21 2010 Michael Scherer <misc@mandriva.org> 0.4-1mdv2010.1
++ Revision: 526220
+- Remove leftover Requires from lua-sql
+- add Requires on main module
+- import lua-dbi
+
+
