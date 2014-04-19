@@ -1,0 +1,10 @@
+diff -urN luadbi-0.5/Makefile luadbi-0.5-patched/Makefile
+--- luadbi-0.5/Makefile	2010-07-16 17:22:13.000000000 +1100
++++ luadbi-0.5-patched/Makefile	2014-04-19 23:16:42.580910781 +1100
+@@ -1,5 +1,5 @@
+ CC=gcc
+-CFLAGS=-g -pedantic -Wall -O2 -shared -fpic -I /usr/include/lua5.1 -I /usr/include/mysql -I /usr/include/postgresql/ -I /opt/ibm/db2exc/V9.5/include/ -I /usr/lib/oracle/xe/app/oracle/product/10.2.0/client/rdbms/public/ -I .
++CFLAGS=-g -pedantic -Wall -O2 -shared -fpic -I /usr/include/lua5.1 -I /usr/include/mysql -I /usr/include/postgresql/ -I /usr/include/postgresql/server -I /opt/ibm/db2exc/V9.5/include/ -I /usr/lib/oracle/xe/app/oracle/product/10.2.0/client/rdbms/public/ -I .
+ AR=ar rcu
+ RANLIB=ranlib
+ RM=rm -rf

@@ -4,115 +4,96 @@
 %define oname luadbi
 
 # DBI.lua has a shebang that requires bin/lua directly
+%if %{_use_internal_dependency_generator}
+%define __noautoreq '.*bin/lua.*'
+%else
 %define _requires_exceptions bin/lua
+%endif
 
-Name:           lua-dbi
-Version:        0.4
-Release:        %mkrel 4
-Summary:        Database connectivity for the Lua programming language
-
-Group:          Development/Other
-License:        MIT
-URL:            http://code.google.com/p/%{oname}/
-Source0:        http://%{oname}.googlecode.com/files/%{oname}.%{version}.tar.gz
-# patch to compile with postgresql, 
+Summary:	Database connectivity for the Lua programming language
+Name:		lua-dbi
+Version:	0.5
+Release:	1
+License:	MIT
+Group:		Development/Other
+Url:		http://code.google.com/p/%{oname}/
+Source0:	http://%{oname}.googlecode.com/files/%{oname}.%{version}.tar.gz
+# patch to compile with postgresql,
 # to send upstream, once a Pgsql ( nanar ) tell me if this is right or not
-Patch0:         luadbi-fix_postgresql.diff
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-
-BuildRequires:  lua >= %{luaver}, lua-devel >= %{luaver}
-#BuildRequires:  pkgconfig
-BuildRequires:  sqlite3-devel >= 3.0
-BuildRequires:  mysql-devel
-BuildRequires:  postgresql-devel
+Patch0:		luadbi-fix_postgresql.diff
+Patch1:		luadbi-0.5-pgsql_transaction.patch
+Patch2:		luadbi-0.5-postgresql-path.patch
+BuildRequires:	lua >= %{luaver}
+BuildRequires:	mysql-devel
+BuildRequires:	pkgconfig(lua) >= %{luaver}
+BuildRequires:	pkgconfig(libpq)
+BuildRequires:	pkgconfig(sqlite3)
+Requires:	lua >= %{luaver}
 
 %description
 LuaSQL is a simple interface from Lua to a DBMS. This package of LuaSQL
 supports MySQL, SQLite and PostgreSQL databases. You can execute arbitrary SQL
 statements and it allows for retrieving results in a row-by-row cursor fashion.
 
+%files
+%doc README
+%{lualibdir}/DBI.lua
+
+#----------------------------------------------------------------------------
+
 %package sqlite
-Summary:        SQLite database connectivity for the Lua programming language
-Group:          Development/Other
-Requires:       lua >= %{luaver}
-Requires:       %{name}
+Summary:	SQLite database connectivity for the Lua programming language
+Group:		Development/Other
+Requires:	%{name}
+
 %description sqlite
 LuaDBI is a simple interface from Lua to a DBMS. This package provides access
 to SQLite databases.
 
+%files sqlite
+%{lualibdir}/dbdsqlite3.so
+
+#----------------------------------------------------------------------------
 
 %package mysql
-Summary:        MySQL database connectivity for the Lua programming language
-Group:          Development/Other
-Requires:       lua >= %{luaver}
-Requires:       %{name}
+Summary:	MySQL database connectivity for the Lua programming language
+Group:		Development/Other
+Requires:	%{name}
+
 %description mysql
 LuaDBI is a simple interface from Lua to a DBMS. This package provides access
 to MySQL databases.
 
+%files mysql
+%{lualibdir}/dbdmysql.so
+
+#----------------------------------------------------------------------------
 
 %package postgresql
-Summary:        PostgreSQL database connectivity for the Lua programming language
-Group:          Development/Other
-Requires:       lua >= %{luaver}
-Requires:       %{name}
+Summary:	PostgreSQL database connectivity for the Lua programming language
+Group:		Development/Other
+Requires:	%{name}
+
 %description postgresql
 LuaDBI is a simple interface from Lua to a DBMS. This package provides access
 to PostgreSQL databases.
 
+%files postgresql
+%{lualibdir}/dbdpostgresql.so
+
+#----------------------------------------------------------------------------
 
 %prep
 %setup -c -q -n %{oname}-%{version}
 %patch0 -p0
+%patch1 -p1
+%patch2 -p1
 
 %build
 mkdir -p build
-make 
+make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%lualibdir/
-cp *so *lua $RPM_BUILD_ROOT/%lualibdir/
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
-%files
-%defattr(-,root,root,-)
-%doc README
-%{lualibdir}/DBI.lua
-
-%files sqlite
-%defattr(-,root,root,-)
-%{lualibdir}/dbdsqlite3.so
-
-%files mysql
-%defattr(-,root,root,-)
-%{lualibdir}/dbdmysql.so
-
-%files postgresql
-%defattr(-,root,root,-)
-%{lualibdir}/dbdpostgresql.so
-
-
-%changelog
-* Thu Mar 17 2011 Oden Eriksson <oeriksson@mandriva.com> 0.4-4mdv2011.0
-+ Revision: 645823
-- relink against libmysqlclient.so.18
-
-* Mon Dec 06 2010 Oden Eriksson <oeriksson@mandriva.com> 0.4-3mdv2011.0
-+ Revision: 612777
-- the mass rebuild of 2010.1 packages
-
-* Sat Mar 27 2010 Michael Scherer <misc@mandriva.org> 0.4-2mdv2010.1
-+ Revision: 528274
-- fix spurious requires ( autodetected )
-
-* Sun Mar 21 2010 Michael Scherer <misc@mandriva.org> 0.4-1mdv2010.1
-+ Revision: 526220
-- Remove leftover Requires from lua-sql
-- add Requires on main module
-- import lua-dbi
-
+mkdir -p %{buildroot}/%{lualibdir}/
+cp *so *lua %{buildroot}/%{lualibdir}/
 
