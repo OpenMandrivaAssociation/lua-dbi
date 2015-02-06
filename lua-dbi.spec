@@ -13,7 +13,7 @@
 Summary:	Database connectivity for the Lua programming language
 Name:		lua-dbi
 Version:	0.5
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Other
 Url:		http://code.google.com/p/%{oname}/
