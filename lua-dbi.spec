@@ -16,7 +16,7 @@ Version:	0.5
 Release:	2
 License:	MIT
 Group:		Development/Other
-Url:		http://code.google.com/p/%{oname}/
+Url:		https://code.google.com/p/%{oname}/
 Source0:	http://%{oname}.googlecode.com/files/%{oname}.%{version}.tar.gz
 # patch to compile with postgresql,
 # to send upstream, once a Pgsql ( nanar ) tell me if this is right or not
