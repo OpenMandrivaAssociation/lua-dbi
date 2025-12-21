@@ -23,6 +23,7 @@ Source0:	http://%{oname}.googlecode.com/files/%{oname}.%{version}.tar.gz
 Patch0:		luadbi-fix_postgresql.diff
 Patch1:		luadbi-0.5-pgsql_transaction.patch
 Patch2:		luadbi-0.5-postgresql-path.patch
+BuildRequires:	make
 BuildRequires:	lua >= %{luaver}
 BuildRequires:	mysql-devel
 BuildRequires:	pkgconfig(lua) >= %{luaver}
